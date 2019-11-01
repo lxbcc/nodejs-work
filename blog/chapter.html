@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<link href="../css/base.css" rel="stylesheet">
+<link href="../css/new.css" rel="stylesheet">
+</head>
+<body>
+
+<article class="blogs">
+ 
+</article>
+<footer>
+  <p class="ft-copyright">个人博客 Sunshine</p>
+<div id="tbox"> <a id="togbook" href=""></a> <a id="gotop" href="javascript:void(0)"></a> </div>
+</footer>
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> -->
+<script>
+    var art = document.getElementsByClassName('blogs');
+    fetch('http://localhost:8083/now/',{method:'GET'})
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(myJson){
+        console.log(myJson);
+        var str=`<article class="blogs"><div class="index_about">
+    <h2 class="c_titile" id="title">${myJson.chapterName}</h2>
+    <p class="box_c">
+    	<span class="d_time">发布时间：<span id="publish">${myJson.publishTimer}</span></span>
+        <span>编辑：<span id="author">admin</span></span>
+        <span>互动QQ群：<a>1234567</a>
+       <span>浏览次数：<span id="views">12</span></span>
+        </span>
+    </p>
+    
+    <ul class="infos" id="content">
+      <p>&nbsp;${myJson.chapterName}</p><p>${myJson.chapterContent}</p>
+      
+    </ul>
+    <ul class="pagelist">
+    
+   </ul>
+    <div class="keybq">
+    	<p><span>关键字词</span>：生活,无奈,努力,生存</p>
+    </div>
+    
+    <div class="ad"> </div></article>`
+    art[0].innerHTML+=str;
+        
+     })
+      
+</script>
+</html>
